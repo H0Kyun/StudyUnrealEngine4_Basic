@@ -6,3 +6,5 @@ UnrealEngine4 기초 사용법 공부
 [강의 링크](https://www.inflearn.com/course/%EC%96%B8%EB%A6%AC%EC%96%BC-%EC%97%94%EC%A7%844-%EC%9E%85%EB%AC%B8)
 <br>
 <br>
+블루프린트<br>
+블루프린트는 C++클래스를 상속받아 제작 가능하지만 그 역은 안된다.
