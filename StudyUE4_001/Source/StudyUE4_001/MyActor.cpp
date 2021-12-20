@@ -9,8 +9,9 @@ AMyActor::AMyActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	// TEXT °°Àº °æ¿ì ¾î´À È¯°æ¿¡¼­³ª ¹®ÀÚ¿­ÀÌ È£È¯µÉ ¼ö ÀÖ°Ô ¸¸µç °Í
-	// CreateDefaultSubobject´Â ÀÏÁ¾ÀÇ ½º¸¶Æ® Æ÷ÀÎÅÍÃ³·³ ¸Þ¸ð¸®¸¦ ÀÚµ¿ °ü¸®ÇØÁØ´Ù.
+	// TEXT ê°™ì€ ê²½ìš° ì–´ëŠ í™˜ê²½ì—ì„œë‚˜ ë¬¸ìžì—´ì´ í˜¸í™˜ë  ìˆ˜ ìžˆê²Œ ë§Œë“  ê²ƒ
+	// CreateDefaultSubobjectëŠ” ì¼ì¢…ì˜ ìŠ¤ë§ˆíŠ¸ í¬ì¸í„°ì²˜ëŸ¼ ë©”ëª¨ë¦¬ë¥¼ ìžë™ ê´€ë¦¬í•´ì¤€ë‹¤.
+	
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MESH"));
 	RootComponent = Mesh;
 
@@ -28,21 +29,21 @@ void AMyActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	//µð¹ö±ë ¹æ¹ý
-	//1. ¾Æ·¡¿Í °°ÀÌ ·Î±×¸¦ ¾´´Ù.
+	//ë””ë²„ê¹… ë°©ë²•
+	//1. ì•„ëž˜ì™€ ê°™ì´ ë¡œê·¸ë¥¼ ì“´ë‹¤.
 	UE_LOG(LogTemp, Warning, TEXT("BeginPlay %d"), 3);
-	//2. ¾ð¸®¾ó ¿£ÁøÀ» Á¾·áÇÏ°í ºê·¹ÀÌÅ©Æ÷ÀÎÆ®¸¦ ÀâÀº ÈÄ 
-	//Visual StudioÀÇ µð¹ö±ëÀ» »ç¿ëÇÑ´Ù. ¾î¸®¸é µð¹ö±ë Á¾·á½Ã ¾ð¸®¾ó ²¨Áü
+	//2. ì–¸ë¦¬ì–¼ ì—”ì§„ì„ ì¢…ë£Œí•˜ê³  ë¸Œë ˆì´í¬í¬ì¸íŠ¸ë¥¼ ìž¡ì€ í›„ 
+	//Visual Studioì˜ ë””ë²„ê¹…ì„ ì‚¬ìš©í•œë‹¤. ì–´ë¦¬ë©´ ë””ë²„ê¹… ì¢…ë£Œì‹œ ì–¸ë¦¬ì–¼ êº¼ì§
 }
 
 // Called every frame
 void AMyActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//TickÀº ¸ÅÇÁ·¹ÀÓ¸¶´Ù È£ÃâµÊ
-	//DeltaTimeÀº Tick ÇÔ¼ö È£Ãâ °£ÀÇ °£°Ý 
-	//¼Óµµ °°Àº °Í¿¡ DeltaTimeÀ» °öÇÏ¿© È£ÃâµÇ´Â ÇÁ·¹ÀÓ ¼ö¿Í °ü°è¾øÀÌ
-	//1ÃÊ¿¡ °¡´Â °Å¸®¸¦ ¸ÂÃçÁÜ
+	//Tickì€ ë§¤í”„ë ˆìž„ë§ˆë‹¤ í˜¸ì¶œë¨
+	//DeltaTimeì€ Tick í•¨ìˆ˜ í˜¸ì¶œ ê°„ì˜ ê°„ê²© 
+	//ì†ë„ ê°™ì€ ê²ƒì— DeltaTimeì„ ê³±í•˜ì—¬ í˜¸ì¶œë˜ëŠ” í”„ë ˆìž„ ìˆ˜ì™€ ê´€ê³„ì—†ì´
+	//1ì´ˆì— ê°€ëŠ” ê±°ë¦¬ë¥¼ ë§žì¶°ì¤Œ
 	AddActorLocalRotation(FRotator(0.f, RotateSpeed * DeltaTime, 0.f));
 }
 

@@ -3,9 +3,9 @@
 
 #include "MyCharacter.h"
 
-// MyCharacter.h ÆÄÀÏ¿¡ include ÇÏÁö ¾Ê°í MyCharacter.cpp ÆÄÀÏ¿¡ include ÇÏ´Â ÀÌÀ¯
-// MyCharacter.h ÆÄÀÏÀ» ´Ù¸¥ ÆÄÀÏÀÌ includeÇÒ °æ¿ì ºÒÇÊ¿äÇÑ Çì´õ°¡
-// include µÇÁö ¾Ê°Ô ¸·±â À§ÇÔÀÌ´Ù
+// MyCharacter.h íŒŒì¼ì— include í•˜ì§€ ì•Šê³  MyCharacter.cpp íŒŒì¼ì— include í•˜ëŠ” ì´ìœ 
+// MyCharacter.h íŒŒì¼ì„ ë‹¤ë¥¸ íŒŒì¼ì´ includeí•  ê²½ìš° ë¶ˆí•„ìš”í•œ í—¤ë”ê°€
+// include ë˜ì§€ ì•Šê²Œ ë§‰ê¸° ìœ„í•¨ì´ë‹¤
 #include "GameFramework/SpringArmcomponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -67,8 +67,8 @@ void AMyCharacter::UpDown(float Value)
 
 void AMyCharacter::LeftRight(float Value)
 {
-	//TranformÀ» ÀÌ¿ëÇØ Ä³¸¯ÅÍÀÇ ¿òÁ÷ÀÓÀ» ±¸ÇöÇÏ¸é ¹°, ´« µî È¯°æ¿¡ µû¸¥ º¯°æÀ» ÇÏ±â¾î·Æ´Ù
-	// ±×·¡¼­ ¾ğ¸®¾ó¿¡¼­´Â ¿òÁ÷ÀÓµµ ÇÏ³ªÀÇ ÄÄÆ÷³ÍÆ®·Î °ü¸®ÇØÁØ´Ù
+	//Tranformì„ ì´ìš©í•´ ìºë¦­í„°ì˜ ì›€ì§ì„ì„ êµ¬í˜„í•˜ë©´ ë¬¼, ëˆˆ ë“± í™˜ê²½ì— ë”°ë¥¸ ë³€ê²½ì„ í•˜ê¸°ì–´ë µë‹¤
+	// ê·¸ë˜ì„œ ì–¸ë¦¬ì–¼ì—ì„œëŠ” ì›€ì§ì„ë„ í•˜ë‚˜ì˜ ì»´í¬ë„ŒíŠ¸ë¡œ ê´€ë¦¬í•´ì¤€ë‹¤
 	AddMovementInput(GetActorRightVector(), Value);
 
 }

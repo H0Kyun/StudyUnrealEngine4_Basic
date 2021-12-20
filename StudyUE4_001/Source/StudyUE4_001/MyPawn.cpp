@@ -39,14 +39,14 @@ void AMyPawn::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
-// ÀÔ·ÂÀ» ÄÄÆ÷³ÍÆ®·Î ¹Þ¾Æ¼­ ¾î¶² ÀÔ·ÂÀ» ¹Þ¾ÒÀ» ¶§ ¾î¶² ÇÔ¼ö°¡ È£ÃâµÇ¾ß ÇÏ´ÂÁö¸¦ ¸ÅÇÎÇØÁØ´Ù
+// ìž…ë ¥ì„ ì»´í¬ë„ŒíŠ¸ë¡œ ë°›ì•„ì„œ ì–´ë–¤ ìž…ë ¥ì„ ë°›ì•˜ì„ ë•Œ ì–´ë–¤ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ì•¼ í•˜ëŠ”ì§€ë¥¼ ë§¤í•‘í•´ì¤€ë‹¤
 void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {	
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	//Axis´Â Á¶ÀÌ½ºÆ½ Å°, ActionÀº ¹öÆ° »ý°¢ÇÏ¸é µÈ´Ù
-	//this ´ÙÀ½¿¡ ¿À´Â°Ô È£ÃâÇÒ ÇÔ¼ö Çì´õ¿¡ Á¤ÀÇÇØ µÐ´Ù
-	//ÇÃ·¹ÀÌ¾î ÄÁÆ®·Ñ·¯ Å¬·¡½º·Î ÀÌÀü °¡´É
+	//AxisëŠ” ì¡°ì´ìŠ¤í‹± í‚¤, Actionì€ ë²„íŠ¼ ìƒê°í•˜ë©´ ëœë‹¤
+	//this ë‹¤ìŒì— ì˜¤ëŠ”ê²Œ í˜¸ì¶œí•  í•¨ìˆ˜ í—¤ë”ì— ì •ì˜í•´ ë‘”ë‹¤
+	//í”Œë ˆì´ì–´ ì»¨íŠ¸ë¡¤ëŸ¬ í´ëž˜ìŠ¤ë¡œ ì´ì „ ê°€ëŠ¥
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AMyPawn::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AMyPawn::LeftRight);
 
@@ -60,8 +60,8 @@ void AMyPawn::UpDown(float Value)
 
 void AMyPawn::LeftRight(float Value)
 {
-	//TranformÀ» ÀÌ¿ëÇØ Ä³¸¯ÅÍÀÇ ¿òÁ÷ÀÓÀ» ±¸ÇöÇÏ¸é ¹°, ´« µî È¯°æ¿¡ µû¸¥ º¯°æÀ» ÇÏ±â¾î·Æ´Ù
-	// ±×·¡¼­ ¾ð¸®¾ó¿¡¼­´Â ¿òÁ÷ÀÓµµ ÇÏ³ªÀÇ ÄÄÆ÷³ÍÆ®·Î °ü¸®ÇØÁØ´Ù
+	//Tranformì„ ì´ìš©í•´ ìºë¦­í„°ì˜ ì›€ì§ìž„ì„ êµ¬í˜„í•˜ë©´ ë¬¼, ëˆˆ ë“± í™˜ê²½ì— ë”°ë¥¸ ë³€ê²½ì„ í•˜ê¸°ì–´ë µë‹¤
+	// ê·¸ëž˜ì„œ ì–¸ë¦¬ì–¼ì—ì„œëŠ” ì›€ì§ìž„ë„ í•˜ë‚˜ì˜ ì»´í¬ë„ŒíŠ¸ë¡œ ê´€ë¦¬í•´ì¤€ë‹¤
 	AddMovementInput(GetActorRightVector(), Value);
 
 }

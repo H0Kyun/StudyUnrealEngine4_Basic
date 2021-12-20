@@ -31,7 +31,7 @@ public:
 
 private:
 
-	// �Ϲ������� ĳ���͸� ���󰡴� ī�޶� ���� ���
+	// 일반적으로 캐릭터를 따라가는 카메라 제작 방법
 	UPROPERTY(VisibleAnywhere)
 	class USpringArmComponent* SpringArm;
 

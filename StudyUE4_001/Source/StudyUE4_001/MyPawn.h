@@ -33,8 +33,8 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
 
-	//TranformÀ» ÀÌ¿ëÇØ Ä³¸¯ÅÍÀÇ ¿òÁ÷ÀÓÀ» ±¸ÇöÇÏ¸é ¹°, ´« µî È¯°æ¿¡ µû¸¥ º¯°æÀ» ÇÏ±â¾î·Æ´Ù
-	// ±×·¡¼­ ¾ð¸®¾ó¿¡¼­´Â ¿òÁ÷ÀÓµµ ÇÏ³ªÀÇ ÄÄÆ÷³ÍÆ®·Î °ü¸®ÇØÁØ´Ù
+	//Tranformì„ ì´ìš©í•´ ìºë¦­í„°ì˜ ì›€ì§ìž„ì„ êµ¬í˜„í•˜ë©´ ë¬¼, ëˆˆ ë“± í™˜ê²½ì— ë”°ë¥¸ ë³€ê²½ì„ í•˜ê¸°ì–´ë µë‹¤
+	// ê·¸ëž˜ì„œ ì–¸ë¦¬ì–¼ì—ì„œëŠ” ì›€ì§ìž„ë„ í•˜ë‚˜ì˜ ì»´í¬ë„ŒíŠ¸ë¡œ ê´€ë¦¬í•´ì¤€ë‹¤
 	UPROPERTY(VisibleAnywhere)
 	class UFloatingPawnMovement* Movement;
 };

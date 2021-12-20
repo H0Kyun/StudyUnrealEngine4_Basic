@@ -25,8 +25,8 @@ public:
 
 private:
 
-	// C++¿¡´Â ¾ø´Â ¸®ÇÃ·º¼Ç ±â¼úÀ» ¾ð¸®¾ó¿¡¼­ ±¸Çö
-	// °ø½Ä ¹®¼­¸¦ º¸¸é ´Ù¾çÇÑ ±â´ÉÀÇ º¯¼ö?¸¦ Ã£À» ¼ö ÀÖ´Ù
+	// C++ì—ëŠ” ì—†ëŠ” ë¦¬í”Œë ‰ì…˜ ê¸°ìˆ ì„ ì–¸ë¦¬ì–¼ì—ì„œ êµ¬í˜„
+	// ê³µì‹ ë¬¸ì„œë¥¼ ë³´ë©´ ë‹¤ì–‘í•œ ê¸°ëŠ¥ì˜ ë³€ìˆ˜?ë¥¼ ì°¾ì„ ìˆ˜ ìžˆë‹¤
 	UPROPERTY(VisibleAnywhere) 
 	UStaticMeshComponent* Mesh;
 
