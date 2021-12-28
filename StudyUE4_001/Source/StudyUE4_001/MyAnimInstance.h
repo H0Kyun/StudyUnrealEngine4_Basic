@@ -15,8 +15,21 @@ UCLASS()
 class STUDYUE4_001_API UMyAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
-	
+
+
+public:
+	UMyAnimInstance();
+
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+
+	void PlayAttackMontage();
+	void JumpToSection(int32 SectionIndex);
+
+	FName GetAttackMontageName(int32 SectionIndex);
+private:
+	// Notify 사용법 AnimNotify_에 Notify이름
+	UFUNCTION()
+	void AnimNotify_AttackHit();
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Pawon, Meta=(AllowPrivateAccess=true))
@@ -24,4 +37,7 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawon, Meta = (AllowPrivateAccess = true))
 	bool IsFalling;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawon, Meta = (AllowPrivateAccess = true))
+	UAnimMontage* AttackMontage;
 };
