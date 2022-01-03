@@ -97,6 +97,7 @@ void AMyCharacter::UpDown(float Value)
 
 void AMyCharacter::LeftRight(float Value)
 {
+	LeftRightValue = Value;
 	//Tranform을 이용해 캐릭터의 움직임을 구현하면 물, 눈 등 환경에 따른 변경을 하기어렵다
 	// 그래서 언리얼에서는 움직임도 하나의 컴포넌트로 관리해준다
 	AddMovementInput(GetActorRightVector(), Value);
