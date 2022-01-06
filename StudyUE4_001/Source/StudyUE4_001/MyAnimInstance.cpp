@@ -65,5 +65,6 @@ FName UMyAnimInstance::GetAttackMontageName(int32 SectionIndex)
 void UMyAnimInstance::AnimNotify_AttackHit()
 {
 	//사운드 넣어보자
+	OnAttackHit.Broadcast();
 }
 

@@ -10,6 +10,8 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "MyAnimInstance.h"
+#include "DrawDebugHelpers.h" //디버깅용 모델 생성
+#include "MyWeapon.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -35,17 +37,53 @@ AMyCharacter::AMyCharacter()
 	{
 		GetMesh()->SetSkeletalMesh(SM.Object);
 	}
+
+	/*FName WeaponSocket(TEXT("hand_lSocket"));
+	if (GetMesh()->DoesSocketExist(WeaponSocket))
+	{
+		Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WEAPON"));
+		static ConstructorHelpers::FObjectFinder<UStaticMesh> SW(TEXT("StaticMesh'/Game/ParagonGreystone/FX/Meshes/Heroes/Greystone/SM_Greystone_Blade_01.SM_Greystone_Blade_01'"));
+		if (SW.Succeeded())
+		{
+			Weapon->SetStaticMesh(SW.Object);
+		}
+
+		Weapon->SetupAttachment(GetMesh(), WeaponSocket);
+	}*/
 }
 
 // Called when the game starts or when spawned
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	FName WeaponSocket(TEXT("hand_lSocket"));
+
+	auto DropWeapon = GetWorld()->SpawnActor<AMyWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
+
+	if (DropWeapon)
+	{
+		/*DropWeapon->AttachToComponent(
+			GetMesh(),
+			FAttachmentTransformRules::SnapToTargetNotIncludingScale,
+			WeaponSocket
+		);*/
+	}
+}
+
+void AMyCharacter::PostInitializeComponents()
+{
+	// 생명 주기상 모든 컴포넌트들이 초기화된 후 연동 시키는 것이 적절하다
+	Super::PostInitializeComponents();
 	
 	// 자주 쓰는 변수는 멤버 변수로 만들자, 생명주기에 맞춰 적절한 위치에서 초기화하자
 	AnimInstance = Cast<UMyAnimInstance>(GetMesh()->GetAnimInstance());
-	// 델리게이트 함수는 정해진 규칙을 따라 제작해야 한다
-	AnimInstance->OnMontageEnded.AddDynamic(this, &AMyCharacter::OnAttackMontageEnded);
+	if (AnimInstance)
+	{
+		// 델리게이트 함수는 정해진 규칙을 따라 제작해야 한다
+		AnimInstance->OnMontageEnded.AddDynamic(this, &AMyCharacter::OnAttackMontageEnded);
+		AnimInstance->OnAttackHit.AddUObject(this, &AMyCharacter::AttackCheck);
+	}
 }
 
 // Called every frame
@@ -88,6 +126,50 @@ void AMyCharacter::Attack()
 	AttackIndex = (AttackIndex + 1) % 3;
 
 	IsAttacking = true;
+}
+
+void AMyCharacter::AttackCheck()
+{
+	FHitResult HitResult;
+	FCollisionQueryParams Params(NAME_None, false, this);
+
+	float AttackRange = 100.f;
+	float AttackRadius = 100.f;
+
+	// 칼의 궤도를 정확하게 계산하지 못하는 온라인 게임에서 많이 사용하는 방식
+	bool bResult = GetWorld()->SweepSingleByChannel(
+		OUT HitResult,
+		GetActorLocation(),
+		GetActorLocation() + GetActorRightVector() * AttackRange,
+		FQuat::Identity,
+		ECollisionChannel::ECC_GameTraceChannel2,
+		FCollisionShape::MakeSphere(AttackRadius),
+		Params
+	);
+
+	FColor DrawColor;
+
+	if (bResult)
+		DrawColor = FColor::Green;
+	else
+		DrawColor = FColor::Red;
+
+	// 디버깅용 모델 
+	DrawDebugCapsule(
+		GetWorld(),
+		GetActorLocation() + GetActorRightVector() * AttackRange * 0.5f,
+		AttackRange * 0.5f + AttackRadius,
+		AttackRadius,
+		FRotationMatrix::MakeFromZ(GetActorRightVector() * AttackRange).ToQuat(),
+		DrawColor,
+		false,
+		2.f
+	);
+
+	if (bResult && HitResult.Actor.IsValid())
+	{
+		UE_LOG(LogTemp, Log, TEXT("Hit Actor: %s"), *HitResult.Actor->GetName());
+	}
 }
 
 void AMyCharacter::UpDown(float Value)

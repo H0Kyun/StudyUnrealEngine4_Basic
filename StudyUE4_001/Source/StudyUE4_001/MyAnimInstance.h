@@ -6,6 +6,7 @@
 #include "Animation/AnimInstance.h"
 #include "MyAnimInstance.generated.h"
 
+DECLARE_MULTICAST_DELEGATE(FOnAttackHit);
 /**
  * Animation 관리를 위해 만든 클래스
  * 움직이는 캐릭터의 클래스에 움직일때마다 애니메이션이 실행되게하는 코드를 작성하면
@@ -43,4 +44,7 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawon, Meta = (AllowPrivateAccess = true))
 	float Horizontal;
+
+public:
+	FOnAttackHit OnAttackHit;
 };
