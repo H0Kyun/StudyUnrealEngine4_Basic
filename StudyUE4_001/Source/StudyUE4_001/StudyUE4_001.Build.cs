@@ -7,8 +7,9 @@ public class StudyUE4_001 : ModuleRules
 	public StudyUE4_001(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+
+		//UI 제작할 때 UMG를 안 붙이면 오류가 나는 버전이 있다
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "UMG" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

@@ -37,6 +37,8 @@ public:
 	UFUNCTION()
 	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+
 private:
 
 	// 일반적으로 캐릭터를 따라가는 카메라 제작 방법
@@ -61,4 +63,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Weapon;
+
+	UPROPERTY(VisibleAnywhere)
+	class UMyStatComponent* Stat;
+
+	UPROPERTY(VisibleAnywhere)
+	class UWidgetComponent* HpBar;
 };
