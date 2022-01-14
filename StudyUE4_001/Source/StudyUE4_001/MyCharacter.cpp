@@ -15,7 +15,7 @@
 #include "MyWeapon.h"
 #include "MyStatComponent.h"
 #include "MyCharacterWidget.h"
-
+#include "MyAIController.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -55,6 +55,9 @@ AMyCharacter::AMyCharacter()
 		HpBar->SetWidgetClass(UW.Class);
 		HpBar->SetDrawSize(FVector2D(200.f, 50.f));
 	}
+
+	AIControllerClass = AMyAIController::StaticClass();
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 	/*
 	* 소켓에 아이템 넣는 거
 	FName WeaponSocket(TEXT("hand_lSocket"));
@@ -221,6 +224,8 @@ void AMyCharacter::LeftRight(float Value)
 void AMyCharacter::OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted)
 {
 	IsAttacking = false;
+	// Attack이 끝났음을 알림
+	OnAttackEnd.Broadcast();
 }
 
 float AMyCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
