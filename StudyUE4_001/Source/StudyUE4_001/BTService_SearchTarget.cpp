@@ -17,11 +17,12 @@ void UBTService_SearchTarget::TickNode(UBehaviorTreeComponent& OwnerComp, uint8*
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 
+	// 현재 AI를 실행하는 Pawn을 찾는다.
 	auto CurrentPawn = OwnerComp.GetAIOwner()->GetPawn();
 	if (CurrentPawn == nullptr)
 		return;
 
-	UWorld* World = CurrentPawn->GetWorld();
+	UWorld* World = CurrentPawn->GetWorld(); // Pawn이 있는 월드
 	FVector Center = CurrentPawn->GetActorLocation();
 	float SearchRadius = 250.f;
 
